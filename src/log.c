@@ -254,10 +254,10 @@ int a2gs_Log_WriteLog(a2gs_Log_t *log, int logLevel, char *msg, ...)
 	strftime(log->msg, log->msgSize, "%Y%m%d %H%M%S", &logTimeTm);
 
 	if(gettimeofday(&tv, &tz) == 0){
-		sprintf(&(log->msg[15]), " %07ld|", tv.tv_usec);
+		sprintf(&(log->msg[15]), " %06ld|", tv.tv_usec);
 	}
 
-	sprintf(&(log->msg[24]), "%d %d|", getpid(), getppid());
+	sprintf(&(log->msg[23]), "%d %d|", getpid(), getppid());
 
 	if(a2gs_LOG_LEVEL_RED_ALERT & A2GS_LOG_BITWISE_AND_LOG_LEVEL)
 		strcat(log->msg, "RED ");
